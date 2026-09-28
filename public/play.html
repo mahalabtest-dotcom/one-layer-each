@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0d12" />
+  <title>One Layer Each</title>
+  <link rel="stylesheet" href="/vendor/fonts/space-grotesk/500.css" />
+  <link rel="stylesheet" href="/vendor/fonts/space-grotesk/700.css" />
+  <link rel="stylesheet" href="/vendor/fonts/inter/400.css" />
+  <link rel="stylesheet" href="/vendor/fonts/inter/600.css" />
+  <link rel="stylesheet" href="/vendor/fonts/jetbrains-mono/500.css" />
+  <link rel="stylesheet" href="/static/css/play.css" />
+</head>
+<body>
+  <div class="bg-lines" aria-hidden="true"></div>
+
+  <div id="net" class="net" hidden>Reconnecting…</div>
+
+  <!-- 1. Join -->
+  <section id="screen-join" class="screen">
+    <div class="join">
+      <div class="mark" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      <p class="eyebrow">Welcome, maker</p>
+      <h1>One Layer<br />Each</h1>
+      <p class="lede">You'll draw one thing. Just one. What happens next is a surprise.</p>
+      <form id="join-form" autocomplete="off">
+        <label for="name">Your first name</label>
+        <input id="name" name="name" maxlength="24" placeholder="e.g. Maha" required enterkeyhint="go" />
+        <button class="btn-primary" type="submit">Let's draw <span aria-hidden="true">→</span></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 2. Draw -->
+  <section id="screen-draw" class="screen" hidden>
+    <header class="draw-head">
+      <button class="chip" id="rename" type="button" title="Change name"><span class="dot"></span><span id="me-name"></span></button>
+      <div id="timer" class="timer" hidden>2:00</div>
+    </header>
+    <div class="prompt">
+      <h2>Draw anything. Make it bold.</h2>
+      <p>Closed outlines get filled in for you.</p>
+    </div>
+
+    <div class="canvas-wrap" id="canvas-wrap">
+      <canvas id="pad" width="768" height="768" aria-label="Drawing area"></canvas>
+      <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+      <div class="empty-hint" id="empty-hint">Touch to draw</div>
+    </div>
+
+    <div class="palette" id="palette" role="radiogroup" aria-label="Colors"></div>
+
+    <div class="tools" role="toolbar">
+      <button class="tool active" data-tool="brush" type="button" aria-label="Brush">
+        <svg viewBox="0 0 24 24"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19z"/><path d="M14.5 6.5l3 3"/></svg>
+      </button>
+      <button class="tool size" id="size" type="button" aria-label="Brush size"><span class="size-dot"></span></button>
+      <button class="tool" data-tool="fill" type="button" aria-label="Fill bucket">
+        <svg viewBox="0 0 24 24"><path d="M11 3 3.5 10.5a1.5 1.5 0 0 0 0 2.1l5.9 5.9a1.5 1.5 0 0 0 2.1 0L19 11z"/><path d="M5 10h13"/><path d="M20.5 15.5s1.5 1.8 1.5 2.8a1.5 1.5 0 0 1-3 0c0-1 1.5-2.8 1.5-2.8z"/></svg>
+      </button>
+      <button class="tool" data-tool="erase" type="button" aria-label="Eraser">
+        <svg viewBox="0 0 24 24"><path d="M8.5 20H20"/><path d="m4.2 15.2 9.9-9.9a2 2 0 0 1 2.8 0l2.8 2.8a2 2 0 0 1 0 2.8L12 18.6a2 2 0 0 1-1.4.6H7.4a2 2 0 0 1-1.4-.6l-1.8-1.8a1.2 1.2 0 0 1 0-1.6z"/><path d="m9 10.5 5.5 5.5"/></svg>
+      </button>
+      <span class="sep"></span>
+      <button class="tool" id="undo" type="button" aria-label="Undo">
+        <svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+      </button>
+      <button class="tool" id="clear" type="button" aria-label="Clear">
+        <svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M10 11v6M14 11v6"/><path d="M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12"/><path d="M9 7V4h6v3"/></svg>
+      </button>
+    </div>
+
+    <button class="btn-primary send" id="send" type="button" disabled>Send my layer</button>
+  </section>
+
+  <!-- 3. Status (sent / locked / printing / done) -->
+  <section id="screen-status" class="screen" hidden>
+    <div class="status">
+      <div class="status-visual" id="status-visual"></div>
+      <p class="eyebrow" id="status-eyebrow"></p>
+      <h2 id="status-title"></h2>
+      <p class="lede" id="status-body"></p>
+      <div class="meter" id="meter" hidden><div class="meter-fill" id="meter-fill"></div></div>
+      <button class="btn-ghost" id="status-btn" type="button" hidden></button>
+    </div>
+  </section>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="/static/js/play.js"></script>
+</body>
+</html>

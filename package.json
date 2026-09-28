@@ -1,0 +1,21 @@
+{
+  "name": "one-layer-each",
+  "version": "1.0.0",
+  "description": "A phone-to-projector ice breaker: everyone draws one layer, and the stack is 3D printed live on the big screen.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/space-grotesk": "^5.3.0",
+    "qrcode": "^1.5.4",
+    "three": "0.186.1",
+    "ws": "^8.22.0"
+  }
+}

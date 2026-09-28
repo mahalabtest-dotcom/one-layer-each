@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: one-layer-each
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
